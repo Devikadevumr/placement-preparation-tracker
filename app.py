@@ -1,10 +1,18 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    aptitude = request.form['aptitude']
+    coding = request.form['coding']
+    core = request.form['core']
+
+    return f"Received scores → Aptitude: {aptitude}, Coding: {coding}, Core: {core}"
 
 if __name__ == '__main__':
     app.run(debug=True)

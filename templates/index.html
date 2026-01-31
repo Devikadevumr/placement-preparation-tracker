@@ -4,7 +4,23 @@
     <title>Placement Preparation Tracker</title>
 </head>
 <body>
+
     <h1>Placement Preparation Tracker</h1>
-    <p>Analyze your placement readiness and get personalized guidance.</p>
+
+    <form action="/analyze" method="POST">
+
+        <label>Aptitude Score:</label><br>
+        <input type="number" name="aptitude" required><br><br>
+
+        <label>Coding Score:</label><br>
+        <input type="number" name="coding" required><br><br>
+
+        <label>Core CS Score:</label><br>
+        <input type="number" name="core" required><br><br>
+
+        <button type="submit">Analyze</button>
+
+    </form>
+
 </body>
 </html>
