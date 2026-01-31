@@ -111,6 +111,10 @@ def analyze():
     readiness=readiness,
     average_score=average_score,
     ml_result=ml_result,
+    aptitude=aptitude,
+    coding=coding,
+    core=
+    core,
 
     )
 

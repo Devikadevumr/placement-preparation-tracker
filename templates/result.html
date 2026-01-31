@@ -30,6 +30,35 @@
 <div class="focus">
 Today's Focus: {{ focus_message }}
 </div>
+<h2>Performance Chart</h2>
+
+<canvas id="scoreChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('scoreChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Aptitude', 'Coding', 'Core CS'],
+        datasets: [{
+            label: 'Scores',
+            data: [{{ aptitude }}, {{ coding }}, {{ core }}],
+            backgroundColor: ['#3498db', '#2ecc71', '#e67e22']
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    }
+});
+</script>
 
 <a href="/">Go Back</a>
 
