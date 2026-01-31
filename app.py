@@ -39,10 +39,19 @@ def analyze():
     coding_status = analyze_score(coding)
     core_status = analyze_score(core)
 
-    # 🔥 CALL suggestion function
     aptitude_suggestion = get_suggestion(aptitude_status, "aptitude")
     coding_suggestion = get_suggestion(coding_status, "coding")
     core_suggestion = get_suggestion(core_status, "core")
+
+    # ✅ DAY 6 logic MUST be inside analyze()
+    scores = {
+        "Aptitude": aptitude,
+        "Coding": coding,
+        "Core CS": core
+    }
+
+    weakest_subject = min(scores, key=scores.get)
+    focus_message = f"Today focus on {weakest_subject} to improve placement readiness."
 
     return render_template(
         'result.html',
@@ -51,10 +60,10 @@ def analyze():
         core_status=core_status,
         aptitude_suggestion=aptitude_suggestion,
         coding_suggestion=coding_suggestion,
-        core_suggestion=core_suggestion
+        core_suggestion=core_suggestion,
+        focus_message=focus_message
     )
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
