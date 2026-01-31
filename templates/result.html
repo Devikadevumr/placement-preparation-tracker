@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Analysis Result</title>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-    <h1>Placement Readiness Result</h1>
+<div class="container">
 
+<h1>Placement Readiness Result</h1>
 
-    <h3>Aptitude: {{ aptitude_status }}</h3>
-    <p>{{ aptitude_suggestion }}</p>
+<h3>Aptitude: {{ aptitude_status }}</h3>
+<p>{{ aptitude_suggestion }}</p>
 
-    <h3>Coding: {{ coding_status }}</h3>
-    <p>{{ coding_suggestion }}</p>
+<h3>Coding: {{ coding_status }}</h3>
+<p>{{ coding_suggestion }}</p>
 
-    <h3>Core CS: {{ core_status }}</h3>
-    <p>{{ core_suggestion }}</p>
+<h3>Core CS: {{ core_status }}</h3>
+<p>{{ core_suggestion }}</p>
 
-    <h2>Today's Focus</h2>
-    <p>{{ focus_message }}</p>
+<div class="focus">
+Today's Focus: {{ focus_message }}
+</div>
 
-   
+<a href="/">Go Back</a>
 
-    <a href="/">Go Back</a>
+</div>
 
 </body>
 </html>

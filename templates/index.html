@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Placement Preparation Tracker</title>
+    <title>Placement Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-    <h1>Placement Preparation Tracker</h1>
+<div class="container">
 
-    <form action="/analyze" method="POST">
+<h1>Placement Preparation Tracker</h1>
 
-        <label>Aptitude Score:</label><br>
-        <input type="number" name="aptitude" required><br><br>
+<form action="/analyze" method="POST">
 
-        <label>Coding Score:</label><br>
-        <input type="number" name="coding" required><br><br>
+<label>Aptitude Score</label><br>
+<input type="number" name="aptitude" required><br><br>
 
-        <label>Core CS Score:</label><br>
-        <input type="number" name="core" required><br><br>
+<label>Coding Score</label><br>
+<input type="number" name="coding" required><br><br>
 
-        <button type="submit">Analyze</button>
+<label>Core CS Score</label><br>
+<input type="number" name="core" required><br><br>
 
-    </form>
+<button type="submit">Analyze</button>
+
+</form>
+
+</div>
 
 </body>
 </html>
