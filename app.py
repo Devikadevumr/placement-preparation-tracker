@@ -23,9 +23,17 @@ def get_suggestion(status, subject):
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
-    aptitude = int(request.form['aptitude'])
-    coding = int(request.form['coding'])
-    core = int(request.form['core'])
+    try:
+        aptitude = int(request.form['aptitude'])
+        coding = int(request.form['coding'])
+        core = int(request.form['core'])
+
+        if not (0 <= aptitude <= 100 and 0 <= coding <= 100 and 0 <= core <= 100):
+            raise ValueError
+
+    except:
+        return render_template("error.html", message="Please enter valid scores between 0 and 100.")
+
 
     def analyze_score(score):
         if score < 50:
