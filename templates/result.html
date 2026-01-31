@@ -7,12 +7,16 @@
 
     <h1>Placement Readiness Result</h1>
 
-    <p>Aptitude: {{ aptitude_status }}</p>
-    <p>Coding: {{ coding_status }}</p>
-    <p>Core CS: {{ core_status }}</p>
+    <h3>Aptitude: {{ aptitude_status }}</h3>
+    <p>{{ aptitude_suggestion }}</p>
+
+    <h3>Coding: {{ coding_status }}</h3>
+    <p>{{ coding_suggestion }}</p>
+
+    <h3>Core CS: {{ core_status }}</h3>
+    <p>{{ core_suggestion }}</p>
 
     <a href="/">Go Back</a>
 
 </body>
 </html>
-
