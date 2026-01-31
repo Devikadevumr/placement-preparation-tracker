@@ -7,12 +7,31 @@ def home():
     return render_template('index.html')
 
 @app.route('/analyze', methods=['POST'])
-def analyze():
-    aptitude = request.form['aptitude']
-    coding = request.form['coding']
-    core = request.form['core']
 
-    return f"Received scores → Aptitude: {aptitude}, Coding: {coding}, Core: {core}"
+def analyze():
+    aptitude = int(request.form['aptitude'])
+    coding = int(request.form['coding'])
+    core = int(request.form['core'])
+
+    def analyze_score(score):
+        if score < 50:
+            return "Weak"
+        elif score <= 75:
+            return "Average"
+        else:
+            return "Strong"
+
+    aptitude_status = analyze_score(aptitude)
+    coding_status = analyze_score(coding)
+    core_status = analyze_score(core)
+
+    return render_template(
+        'result.html',
+        aptitude_status=aptitude_status,
+        coding_status=coding_status,
+        core_status=core_status
+    )
+
 
 if __name__ == '__main__':
     app.run(debug=True)
