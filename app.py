@@ -1,4 +1,14 @@
 from flask import Flask, render_template, request
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+data = pd.read_csv("dataset.csv")
+
+X = data[['aptitude', 'coding', 'core']]
+y = data['placed']
+
+model = LogisticRegression()
+model.fit(X, y)
 
 app = Flask(__name__)
 
@@ -81,6 +91,14 @@ def analyze():
     else:
         readiness = "Needs Improvement"
 
+        
+    prediction = model.predict([[aptitude, coding, core]])[0]
+
+    if prediction == 1:
+        ml_result = "ML Prediction: Likely to Get Placed"
+    else:
+        ml_result = "ML Prediction: Needs Improvement"
+
     return render_template(
     'result.html',
     aptitude_status=aptitude_status,
@@ -91,7 +109,9 @@ def analyze():
     core_suggestion=core_suggestion,
     focus_message=focus_message,
     readiness=readiness,
-    average_score=average_score
+    average_score=average_score,
+    ml_result=ml_result,
+
     )
 
     
