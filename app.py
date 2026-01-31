@@ -61,16 +61,40 @@ def analyze():
     weakest_subject = min(scores, key=scores.get)
     focus_message = f"Today focus on {weakest_subject} to improve placement readiness."
 
+    scores = {
+    "Aptitude": aptitude,
+    "Coding": coding,
+    "Core CS": core
+    }
+
+    weakest_subject = min(scores, key=scores.get)
+    focus_message = f"Today focus on {weakest_subject}"
+
+    # 🔥 ADD HERE
+    average_score = round((aptitude + coding + core) / 3, 2)
+
+
+    if average_score >= 70:
+        readiness = "Placement Ready"
+    elif average_score >= 50:
+        readiness = "Almost Ready"
+    else:
+        readiness = "Needs Improvement"
+
     return render_template(
-        'result.html',
-        aptitude_status=aptitude_status,
-        coding_status=coding_status,
-        core_status=core_status,
-        aptitude_suggestion=aptitude_suggestion,
-        coding_suggestion=coding_suggestion,
-        core_suggestion=core_suggestion,
-        focus_message=focus_message
+    'result.html',
+    aptitude_status=aptitude_status,
+    coding_status=coding_status,
+    core_status=core_status,
+    aptitude_suggestion=aptitude_suggestion,
+    coding_suggestion=coding_suggestion,
+    core_suggestion=core_suggestion,
+    focus_message=focus_message,
+    readiness=readiness,
+    average_score=average_score
     )
+
+    
 
 
 if __name__ == '__main__':
