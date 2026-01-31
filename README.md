@@ -1,15 +1,37 @@
-# Placement Preparation Tracker
+# Intelligent Placement Preparation System
 
-A web-based application built using Python and Flask to analyze placement readiness based on aptitude, coding, and core CS scores and provide personalized suggestions.
+A smart web-based application built using Python, Flask, and Machine Learning to evaluate placement readiness based on aptitude, coding, and core CS performance. The system provides personalized study recommendations, predicts placement probability, and visualizes performance through an interactive dashboard.
 
 ## Technologies Used
 - Python
 - Flask
+- Machine Learning (scikit-learn)
+- Pandas
 - HTML
 - CSS
+- Chart.js
 
-## Features (Phase 1)
-- Score-based analysis
+## Features
+- Score-based performance analysis
 - Strength & weakness detection
-- Personalized suggestions
-- Daily focus guidance
+- Personalized study recommendations
+- Daily focus prioritization engine
+- Placement readiness prediction
+- Machine learning-based classification
+- Performance analytics dashboard (charts)
+- Input validation and error handling
+- Modular Flask architecture
+
+## System Workflow
+User input → Backend analysis → ML prediction → Recommendation engine → Dashboard visualization
+
+## Future Enhancements
+- User login & authentication system
+- Resume analyzer (ATS-style)
+- Database result storage
+- Learning recommendation engine
+- Online deployment
+
+## Author
+Devika MR  
+B.Tech Computer Science Student
