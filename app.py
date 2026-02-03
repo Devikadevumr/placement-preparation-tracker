@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from flask_sqlalchemy import SQLAlchemy
@@ -113,6 +113,7 @@ def analyze():
             raise ValueError
 
     except:
+        
         return render_template("error.html", message="Please enter valid scores between 0 and 100.")
 
     # ---- Analysis ----
@@ -159,6 +160,10 @@ def analyze():
         ml_result = "ML Prediction: Likely to Get Placed"
     else:
         ml_result = "ML Prediction: Needs Improvement"
+    # store scores for chart page
+    session['aptitude'] = aptitude
+    session['coding'] = coding
+    session['core'] = core
 
     return render_template(
         'result.html',
@@ -176,6 +181,10 @@ def analyze():
         coding=coding,
         core=core
     )
+@app.route('/chart')
+@login_required
+def chart():
+    return render_template('chart.html')
 
 # ================= RUN =================
 if __name__ == '__main__':

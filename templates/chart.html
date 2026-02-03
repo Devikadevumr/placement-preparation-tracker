@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Performance Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Performance Chart</h2>
+
+    <canvas id="scoreChart"></canvas>
+
+    <br><br>
+    <a href="/">
+        <button>Back to Home</button>
+    </a>
+</div>
+
+<script>
+const ctx = document.getElementById('scoreChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Aptitude', 'Coding', 'Core CS'],
+        datasets: [{
+            label: 'Scores',
+            data: [
+                {{ session['aptitude'] }},
+                {{ session['coding'] }},
+                {{ session['core'] }}
+            ],
+            backgroundColor: ['#3498db', '#2ecc71', '#e67e22']
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
