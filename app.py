@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from flask_login import (
     LoginManager,
     UserMixin,
@@ -47,13 +49,12 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        user = User.query.filter_by(username=username, password=password).first()
+        user = User.query.filter_by(username=username).first()
 
-        if user:
+        if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('home'))
-
-    return render_template('login.html')
+        return render_template('login.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -65,7 +66,9 @@ def register():
         if User.query.filter_by(username=username).first():
             return render_template('register.html', error="Username already exists")
 
-        new_user = User(username=username, password=password)
+        hashed_password = generate_password_hash(password)
+        new_user = User(username=username, password=hashed_password)
+
         db.session.add(new_user)
         db.session.commit()
 
@@ -165,6 +168,7 @@ def analyze():
     session['coding'] = coding
     session['core'] = core
 
+    
     return render_template(
         'result.html',
         aptitude_status=aptitude_status,
