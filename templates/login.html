@@ -8,6 +8,9 @@
 
 <div class="container">
     <h1>Login</h1>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
 
     <form method="POST">
         <input name="username" placeholder="Username" required>

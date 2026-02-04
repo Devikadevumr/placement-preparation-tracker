@@ -4,6 +4,19 @@
     <title>Placement Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+<nav class="navbar">
+    <div class="nav-left">
+        <h2>Placement Tracker</h2>
+    </div>
+
+    <div class="nav-right">
+        <a href="/">Home</a>
+        <a href="/chart">Chart</a>
+        <button onclick="toggleDarkMode()" class="dark-btn">🌙</button>
+
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+</nav>
 
 <body>
 
@@ -27,6 +40,21 @@
 </form>
 
 </div>
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark")
+    );
+}
+
+window.onload = function () {
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark");
+    }
+};
+</script>
 
 </body>
 </html>

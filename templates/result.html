@@ -7,37 +7,92 @@
 
 <body>
 
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-left">
+        <h2>Placement Tracker</h2>
+    </div>
+
+    <div class="nav-right">
+        <a href="/">Home</a>
+        <a href="/chart">Chart</a>
+        <button onclick="toggleDarkMode()" class="dark-btn">🌙</button>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+</nav>
+<div class="dashboard">
+    <div class="card">
+        <h3>Average Score</h3>
+        <p>{{ average_score }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Status</h3>
+        <p>{{ readiness }}</p>
+    </div>
+
+    <div class="card">
+        <h3>ML Prediction</h3>
+        <p>{{ ml_result }}</p>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
 <div class="container">
 
-<h1>Placement Readiness Result</h1>
+    <h1>Placement Readiness Result</h1>
 
-<h3>Aptitude: {{ aptitude_status }}</h3>
-<p>{{ aptitude_suggestion }}</p>
+    <h3>Aptitude: {{ aptitude_status }}</h3>
+    <p>{{ aptitude_suggestion }}</p>
 
-<h3>Coding: {{ coding_status }}</h3>
-<p>{{ coding_suggestion }}</p>
+    <h3>Coding: {{ coding_status }}</h3>
+    <p>{{ coding_suggestion }}</p>
 
-<h3>Core CS: {{ core_status }}</h3>
-<p>{{ core_suggestion }}</p>
+    <h3>Core CS: {{ core_status }}</h3>
+    <p>{{ core_suggestion }}</p>
 
-<h2>Placement Prediction</h2>
-<p>Average Score: {{ average_score }}</p>
-<p><strong>Status: {{ readiness }}</strong></p>
+    <h2>Placement Prediction</h2>
+    <p>Average Score: {{ average_score }}</p>
+    <p><strong>Status: {{ readiness }}</strong></p>
 
-<h2>Machine Learning Prediction</h2>
-<p>{{ ml_result }}</p>
+    <h2>Machine Learning Prediction</h2>
+    <p>{{ ml_result }}</p>
 
-<div class="focus">
-Today's Focus: {{ focus_message }}
+    <div class="focus">
+        Today's Focus: {{ focus_message }}
+    </div>
+
+    <br>
+
+    <a href="/chart">
+        <button>View Performance Chart</button>
+    </a>
+
+    <br><br>
+
+    <a href="/">Go Back</a>
+
 </div>
-<br>
-<a href="/chart">
-    <button>View Performance Chart</button>
-</a>
-<br><br>
-<a href="/">Go Back</a>
+...
+</div>  <!-- end of container -->
 
-</div>
+<!-- Dark mode script -->
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark")
+    );
+}
+
+window.onload = function() {
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark");
+    }
+};
+</script>
+
 
 </body>
 </html>
