@@ -54,7 +54,15 @@ def login():
         if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('home'))
-        return render_template('login.html')
+        else:
+            return render_template(
+                'login.html',
+                error="Invalid username or password"
+            )
+
+    # GET request
+    return render_template('login.html')
+
 
 
 @app.route('/register', methods=['GET', 'POST'])
